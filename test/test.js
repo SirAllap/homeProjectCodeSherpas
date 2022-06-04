@@ -31,7 +31,7 @@ describe('CRM-CodeSherpas', () => {
                 email: "davidTheTester@gmail.com",
                 birthDate: "09/30/1990"
             }
-            chai.request('http://localhost:3000')
+            chai.request('https://crm-codesherpas.herokuapp.com/')
             .post('/api/customers')
             .send(customer)
             .end((err, res) => {
@@ -54,7 +54,7 @@ describe('CRM-CodeSherpas', () => {
                 birthDate: "09/30/1990"
             });
             customer.save((err, customer) => {
-                chai.request('http://localhost:3000')
+                chai.request('https://crm-codesherpas.herokuapp.com/')
                 .get('/api/customers/' + customer.id)
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -67,7 +67,7 @@ describe('CRM-CodeSherpas', () => {
 
     describe('/GET all customers', () => {
         it('Should return all customers', (done) => {
-            chai.request('http://localhost:3000')
+            chai.request('https://crm-codesherpas.herokuapp.com/')
             .get('/api/customers')
             .end((err, res) => {
                 res.should.have.status(200);
@@ -89,7 +89,7 @@ describe('CRM-CodeSherpas', () => {
                 birthDate: "09/30/1990"
             });
             customer.save((err, customer) => {
-                chai.request('http://localhost:3000')
+                chai.request('https://crm-codesherpas.herokuapp.com/')
                     .put('/api/customers/' + customer.id)
                     .send({
                         name: "Ramon",
@@ -126,7 +126,7 @@ describe('CRM-CodeSherpas', () => {
                 birthDate: "09/30/1990"
             });
             customer.save((err, customer) => {
-                chai.request('http://localhost:3000')
+                chai.request('https://crm-codesherpas.herokuapp.com/')
                 .delete('/api/customers/' + customer.id)
                 .end((err, res) => {
                     res.should.have.status(200);
