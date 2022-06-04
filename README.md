@@ -9,7 +9,7 @@ $ npm install
 
 | METHOD | ENDPOINT         | TOKEN | ROLE  | DESCRIPTION                 | POST PARAMS                         | RETURNS                                             |
 | ------ | ---------------- | ----- | ----- | --------------------------- | ----------------------------------- | --------------------------------------------------- |
-| POST   | /admin/users     | YES   | ADMIN | Create a new customer       | name, surname, email and birth_date | token?                                              |
+| POST   | /admin/users     | YES   | ADMIN | Create a new customer       | name, surname, email and birth_date | {customer}                                          |
 | GET    | /admin/users/:id | YES   | ADMIN | Get a single customer       | customer_id                         | {customer}                                          |
 | GET    | /admin/users     | YES   | ADMIN | Get all customers           | -                                   | [{customers}]                                       |
 | PUT    | /admin/users/:id | YES   | ADMIN | Update all the attributes   | name, surname, email and birth_date | {customer}                                          |
