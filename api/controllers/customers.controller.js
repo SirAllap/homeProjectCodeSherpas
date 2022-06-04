@@ -30,7 +30,7 @@ async function getAllCustomers(req, res) {
 async function updateCustomer(req, res) {
     try {
         const customer = await CustomerModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        res.status(200).json(customer)
+        res.status(200).json({ Updated_customer: customer })
     } catch (error) {
         res.status(500).send(`Couldn't update the customer ${error}`);
     }
@@ -39,7 +39,7 @@ async function updateCustomer(req, res) {
 async function deleteCustomer(req, res) {
     try {
         const customer = await CustomerModel.findByIdAndDelete(req.params.id)
-        res.status(200).json(`This customer, ${customer.name} ${customer.surname}, has been deleted`)
+        res.status(200).json({ Response: `This customer, ${customer.name} ${customer.surname}, has been deleted` })
     } catch (error) {
         res.status(500).send(`Couldn't delete the customer ${error}`);
     }
