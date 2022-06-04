@@ -21,7 +21,7 @@ try {
     .use(cors())
     .use(morgan('combined'))
     .use(express.json())
-    .use('/api', (req, res) => res.send("I'm your response!"));
+    .use('/api', require('./api/routes'));
 
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, (err) => {
