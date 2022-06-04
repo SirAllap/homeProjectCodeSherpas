@@ -2,7 +2,7 @@ const CustomerModel = require('../models/customer.model')
 
 async function createCustomer(req, res) {
     try {
-        const customer = await CustomerModel.create(req.body, { _id: 0, __v: 0 })
+        const customer = await CustomerModel.create(req.body)
         res.status(200).json(customer);
     } catch (error) {
         res.status(500).send(`Error creating customer: ${error}`);
@@ -36,10 +36,20 @@ async function updateCustomer(req, res) {
     }
 }
 
+async function deleteCustomer(req, res) {
+    try {
+        const customer = await CustomerModel.findByIdAndDelete(req.params.id)
+        res.status(200).json(`This customer, ${customer.name} ${customer.surname}, has been deleted`)
+    } catch (error) {
+        res.status(500).send(`Couldn't delete the customer ${error}`);
+    }
+}
+
 module.exports = {
     createCustomer,
     getSingleCustomer,
     getAllCustomers,
-    updateCustomer
+    updateCustomer,
+    deleteCustomer
 }
 

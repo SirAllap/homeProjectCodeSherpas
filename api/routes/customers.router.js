@@ -5,6 +5,7 @@ const {
   getSingleCustomer,
   getAllCustomers,
   updateCustomer,
+  deleteCustomer
 } = require("../controllers/customers.controller");
 
 router
@@ -12,5 +13,6 @@ router
   .get("/:id", getSingleCustomer)
   .get("/", getAllCustomers)
   .put("/:id", updateCustomer)
+  .delete("/:id", deleteCustomer)
 
 module.exports = router;
