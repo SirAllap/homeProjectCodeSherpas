@@ -27,8 +27,19 @@ async function getAllCustomers(req, res) {
     }
 }
 
+async function updateCustomer(req, res) {
+    try {
+        const customer = await CustomerModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.status(200).json(customer)
+    } catch (error) {
+        res.status(500).send(`Couldn't update the customer ${error}`);
+    }
+}
+
 module.exports = {
     createCustomer,
     getSingleCustomer,
-    getAllCustomers
+    getAllCustomers,
+    updateCustomer
 }
+
