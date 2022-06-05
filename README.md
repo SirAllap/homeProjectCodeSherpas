@@ -5,6 +5,9 @@
 $ npm install
 ```
 
+Alternatively, you can simply run through Postman with: https://crm-codesherpas.herokuapp.com/api/<following_endpoints>
+
+
 ### ADMIN Endpoints
 
 | METHOD | ENDPOINT       | TOKEN | ROLE | DESCRIPTION                 | POST PARAMS                         | RETURNS                                             |
