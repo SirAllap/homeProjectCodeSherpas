@@ -1,21 +1,21 @@
 //During the test the env variable is set to test
 process.env.NODE_ENV = 'test';
 
-let mongoose = require("mongoose");
-let Customer = require('../api/models/customer.model');
+const mongoose = require("mongoose");
+const Customer = require('../api/models/customer.model');
 
 //Require the dev-dependencies
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let server = require('../index');
-let should = chai.should();
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const server = require('../index');
+const should = chai.should();
 
 chai.use(chaiHttp);
 
 // Our parent block
 describe('CRM-CodeSherpas', () => {
     beforeEach((done) => { //Before each test we empty the database
-        Customer.remove({}, (err) => { 
+        Customer.deleteMany({}, (err) => { 
         done();           
         });        
     });
@@ -25,13 +25,14 @@ describe('CRM-CodeSherpas', () => {
   */
     describe('/POST new customer', () => {
         it('New customer should be created', (done) => {
-            let customer = {
+            const customer = {
                 name: "David",
                 surname: "Doing some test",
                 email: "davidTheTester@gmail.com",
                 birthDate: "09/30/1990"
             }
-            chai.request('https://crm-codesherpas.herokuapp.com/')
+            chai.request('https://crm-codesherpas.herokuapp.com')
+            // chai.request('http://localhost:3000')
             .post('/api/customers')
             .send(customer)
             .end((err, res) => {
@@ -47,14 +48,15 @@ describe('CRM-CodeSherpas', () => {
   */
     describe('/GET single customer', () => {
         it('Should return a single customer by id', (done) => {
-            let customer = new Customer({
+            const customer = new Customer({
                 name: "David",
                 surname: "Doing some test",
                 email: "davidTheTester1@gmail.com",
                 birthDate: "09/30/1990"
             });
             customer.save((err, customer) => {
-                chai.request('https://crm-codesherpas.herokuapp.com/')
+                chai.request('https://crm-codesherpas.herokuapp.com')
+                // chai.request('http://localhost:3000')
                 .get('/api/customers/' + customer.id)
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -67,7 +69,8 @@ describe('CRM-CodeSherpas', () => {
 
     describe('/GET all customers', () => {
         it('Should return all customers', (done) => {
-            chai.request('https://crm-codesherpas.herokuapp.com/')
+            chai.request('https://crm-codesherpas.herokuapp.com')
+            // chai.request('http://localhost:3000')
             .get('/api/customers')
             .end((err, res) => {
                 res.should.have.status(200);
@@ -82,14 +85,15 @@ describe('CRM-CodeSherpas', () => {
   */
     describe('/PUT single customer', () => {
         it('Should return an updated customer by id', (done) => {
-            let customer = new Customer({
+            const customer = new Customer({
                 name: "David",
                 surname: "Doing some test",
                 email: "davidTheTester2@gmail.com",
                 birthDate: "09/30/1990"
             });
             customer.save((err, customer) => {
-                chai.request('https://crm-codesherpas.herokuapp.com/')
+                chai.request('https://crm-codesherpas.herokuapp.com')
+                // chai.request('http://localhost:3000')
                     .put('/api/customers/' + customer.id)
                     .send({
                         name: "Ramon",
@@ -119,14 +123,15 @@ describe('CRM-CodeSherpas', () => {
   */
     describe('/DELETE single customer', () => {
         it('Should delete a customer by id', (done) => {
-            let customer = new Customer({
+            const customer = new Customer({
                 name: "David",
                 surname: "Doing some test",
                 email: "davidTheTester3@gmail.com",
                 birthDate: "09/30/1990"
             });
             customer.save((err, customer) => {
-                chai.request('https://crm-codesherpas.herokuapp.com/')
+                chai.request('https://crm-codesherpas.herokuapp.com')
+                // chai.request('http://localhost:3000')
                 .delete('/api/customers/' + customer.id)
                 .end((err, res) => {
                     res.should.have.status(200);
