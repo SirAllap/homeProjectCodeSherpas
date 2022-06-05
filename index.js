@@ -7,7 +7,7 @@ const morgan = require('morgan');
 
 ; (async function () {
   try {
-    await mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017", {
+    await mongoose.connect(process.env.MONGO_URL || "mongodb+srv://admin:7DvcplP1SeczdjNY@cluster0.5b38fyu.mongodb.net/CRM-API?retryWrites=true&w=majority", {
       dbName: process.env.MONGO_DB || "CRM-API"
     })
     console.log('Connected to DB successfully')
