@@ -14,11 +14,11 @@ chai.use(chaiHttp);
 
 // Our parent block
 describe('CRM-CodeSherpas', () => {
-    beforeEach((done) => { //Before each test we empty the database
-        Customer.deleteMany({}, (err) => { 
-        done();           
-        });        
-    });
+    //beforeEach((done) => { //Before each test we empty the database
+    //    Customer.deleteMany({}, (err) => { 
+    //    done();           
+    //    });        
+    //});
 
 /*
     * Test the /POST route
